@@ -1,1 +1,71 @@
-AHHHHHHHHHHHHH'
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>*internal screaming*</title>
+</head>
+
+<body>
+
+  <div>
+    <p id="directions-text">SO... YOU THINK YOU'RE SOME KIND OF PSYCHIC HUH. Then guess what letter im thinking of. </p>
+    <p id="userchoice-text"></p>
+    <p id="computerchoice-text"></p>
+    <p id="wins-text"></p>
+    <p id="losses-text"></p>
+    <p id="guess-text"></p>
+  </div>
+
+  <script type="text/javascript">
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+      "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    var wins = 0;
+    var losses = 0;
+    var guesses = 9;
+    var guessList = [];
+    var directionsText = document.getElementById("directions-text");
+    var userChoiceText = document.getElementById("userchoice-text");
+    var computerChoiceText = document.getElementById("computerchoice-text");
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var guessText = document.getElementById("guess-text");
+
+    
+
+    
+
+    document.onkeyup = function (event) {
+
+      var userGuess = event.key;
+      // i cant figure out how to do this but id make it so the code below would reset everytime the game reset
+      // probably put it out of the function with the an if statement but all my attemps break the game
+      
+      if (userGuess === computerGuess) {
+        wins++
+        guesses = 9 
+        guessList.splice(0,guessList.length);
+      } else if (guesses === 0) {
+        losses++
+        guesses = 9
+        guessList.splice(0,guessList.length)
+      }
+     else {
+      guessList.push(userGuess)
+      guesses--;
+      }
+
+      directionsText.textContent = "";
+
+      userChoiceText.textContent = "Your guesses so far: " + guessList;
+      computerChoiceText.textContent = "The computer chose: " + computerGuess;
+      winsText.textContent = "wins: " + wins;
+      lossesText.textContent = "losses: " + losses;
+      guessText.textContent = "guess left: " + guesses;
+    };
+  </script>
+
+</body>
+
+</html>
